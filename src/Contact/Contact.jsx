@@ -1,12 +1,12 @@
 import style from './Contact.module.css'
 
-const Contact = ({name, number}) => { 
+const Contact = ({name, number, onDelete}) => { 
 
     return (
         <div className={style.contactCard}>
             <p className={style.name}>{name}</p>
             <p className={style.number}>{number}</p>
-            <button className={style.button}>Delete</button>
+            <button className={style.button} onClick={onDelete}>Delete</button>
         </div>
     );
 }
