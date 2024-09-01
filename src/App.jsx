@@ -1,9 +1,9 @@
 
 import './App.module.css'
 //import initialContacts from './contacts.json'
-import ContactList from './ContactList/ContactList'
-import ContactForm from './ContactForm/ContactForm'
-import SearchBox from './SearchBox/SearchBox'
+import ContactList from './components/ContactList/ContactList'
+import ContactForm from './components/ContactForm/ContactForm'
+import SearchBox from './components/SearchBox/SearchBox'
 import { useState, useEffect } from 'react'
 import styles from './App.module.css'
 
