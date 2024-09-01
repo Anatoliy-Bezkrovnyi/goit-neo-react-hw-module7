@@ -1,7 +1,22 @@
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useId } from 'react';
 import { nanoid } from 'nanoid';
 import styles from './ContactForm.module.css'
+import * as Yup from "yup";
+
+const validationSchema = Yup.object().shape({
+    name: Yup.string()
+        .trim()
+        .min(3, "Too Short!")
+        .max(50, "Too Long!")
+        .required("Required"),
+    number: Yup.string()
+      .trim()
+      .matches(/^[0-9+-]+$/, "Only numbers and symbols + and - are allowed")
+      .min(3, "Too short!")
+      .max(50, "Too long!")
+      .required("Required")
+});
 
 
 const ContactForm = ({onAdd}) => {
@@ -25,13 +40,18 @@ const ContactForm = ({onAdd}) => {
     };
 
     return (
-        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-            <Form className={styles.form}>
-                    
+        <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={validationSchema}>
+            <Form className={styles.form}> 
+                <div className={styles.input}>
                     <label htmlFor={nameFieldId}>Name</label>
-                    <Field className={styles.input} type="text" name="name" id={nameFieldId} />                
+                    <Field className={styles.inputField} type="text" name="name" id={nameFieldId} /> 
+                    <ErrorMessage className={styles.error} name="name" component="span" />
+                </div>
+                <div className={styles.input}> 
                     <label htmlFor={numberFieldId}>Number</label>
-                    <Field className={styles.input} type="phone" name="number" id={numberFieldId}/>
+                    <Field className={styles.inputField} type="phone" name="number" id={numberFieldId} />
+                    <ErrorMessage className={styles.error} name="number" component="span" />
+                </div>                    
                     <button className={styles.button} type="submit">Add contact</button>
                 </Form>
         </Formik>

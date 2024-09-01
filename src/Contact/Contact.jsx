@@ -1,11 +1,23 @@
 import style from './Contact.module.css'
+import { FaUser } from "react-icons/fa";
+import { FaPhone } from "react-icons/fa6";
 
 const Contact = ({name, number, onDelete}) => { 
 
     return (
         <div className={style.contactCard}>
-            <p className={style.name}>{name}</p>
-            <p className={style.number}>{number}</p>
+            <div className={style.contactInfo}>
+                <div className={style.name}>
+                    <FaUser />
+                    <p >{name}</p>
+                </div>
+                <div className={style.number}>
+                    <FaPhone />
+                    <p >{number}</p>
+                </div>
+                
+            </div>
+            
             <button className={style.button} onClick={onDelete}>Delete</button>
         </div>
     );
