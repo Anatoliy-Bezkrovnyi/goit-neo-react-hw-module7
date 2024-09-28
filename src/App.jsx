@@ -1,4 +1,3 @@
-
 import './App.module.css'
 //import initialContacts from './contacts.json'
 import ContactList from './components/ContactList/ContactList'
