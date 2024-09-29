@@ -1,14 +1,21 @@
 import './App.module.css'
-//import initialContacts from './contacts.json'
 import ContactList from './components/ContactList/ContactList'
 import ContactForm from './components/ContactForm/ContactForm'
 import SearchBox from './components/SearchBox/SearchBox'
-
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { fetchContacts } from './redux/contactsOps'
 import styles from './App.module.css'
 
 
 
-function App() {   
+function App() {  
+  
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts())
+  }, [dispatch]);
 
   return (
     <>
